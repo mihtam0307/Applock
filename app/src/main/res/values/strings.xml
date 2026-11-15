@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Khóa An Toàn</string>
+    <string name="accessibility_service_desc">Cho phép phát hiện ứng dụng đang mở để hiện màn hình khoá.</string>
+
+    <string name="title_app_list">Ứng dụng</string>
+    <string name="title_history">Lịch sử truy cập</string>
+    <string name="title_lock_setting">Thiết lập khoá</string>
+
+    <string name="lock_type_none">Không khoá</string>
+    <string name="lock_type_pin">Mã số</string>
+    <string name="lock_type_pattern">Hình vẽ</string>
+    <string name="lock_type_fingerprint">Vân tay</string>
+    <string name="lock_type_face">Gương mặt</string>
+
+    <string name="enter_pin">Nhập mã số</string>
+    <string name="confirm_pin">Nhập lại mã số</string>
+    <string name="draw_pattern">Vẽ hình mở khoá</string>
+    <string name="confirm_pattern">Vẽ lại hình mở khoá</string>
+    <string name="wrong_password">Sai mật khẩu</string>
+    <string name="unlock_to_delete">Cần xác minh để xoá / gỡ ứng dụng</string>
+    <string name="biometric_prompt_title">Xác thực để mở khoá</string>
+    <string name="biometric_prompt_subtitle">Dùng vân tay hoặc gương mặt đã đăng ký trên máy</string>
+
+    <string name="btn_save">Lưu</string>
+    <string name="btn_cancel">Huỷ</string>
+    <string name="btn_history">Lịch sử</string>
+
+    <string name="history_empty">Chưa có lượt truy cập nào</string>
+    <string name="history_success">Mở thành công</string>
+    <string name="history_failed">Nhập sai mật khẩu</string>
+</resources>

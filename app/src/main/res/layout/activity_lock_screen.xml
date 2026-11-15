@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="24dp">
+
+    <ImageView
+        android:id="@+id/ivLockAppIcon"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="40dp" />
+
+    <TextView
+        android:id="@+id/tvLockAppLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/text_primary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvLockError"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textColor="@color/danger"
+        android:visibility="invisible"
+        android:text="@string/wrong_password" />
+
+    <!-- Khối nhập mã PIN -->
+    <LinearLayout
+        android:id="@+id/pinContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvPinDots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:textSize="28sp"
+            android:letterSpacing="0.3"
+            android:text="" />
+
+        <GridLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:columnCount="3">
+
+            <Button android:id="@+id/btn1" style="@style/KeypadButton" android:text="1" />
+            <Button android:id="@+id/btn2" style="@style/KeypadButton" android:text="2" />
+            <Button android:id="@+id/btn3" style="@style/KeypadButton" android:text="3" />
+            <Button android:id="@+id/btn4" style="@style/KeypadButton" android:text="4" />
+            <Button android:id="@+id/btn5" style="@style/KeypadButton" android:text="5" />
+            <Button android:id="@+id/btn6" style="@style/KeypadButton" android:text="6" />
+            <Button android:id="@+id/btn7" style="@style/KeypadButton" android:text="7" />
+            <Button android:id="@+id/btn8" style="@style/KeypadButton" android:text="8" />
+            <Button android:id="@+id/btn9" style="@style/KeypadButton" android:text="9" />
+            <View android:layout_width="70dp" android:layout_height="70dp" />
+            <Button android:id="@+id/btn0" style="@style/KeypadButton" android:text="0" />
+            <Button android:id="@+id/btnBackspace" style="@style/KeypadButton" android:text="⌫" />
+
+        </GridLayout>
+    </LinearLayout>
+
+    <!-- Khối vẽ hình -->
+    <com.mihtam0307.applock.ui.PatternLockView
+        android:id="@+id/patternView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone" />
+
+    <!-- Khối sinh trắc học -->
+    <LinearLayout
+        android:id="@+id/bioContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_secondary"
+            android:text="@string/biometric_prompt_subtitle" />
+
+        <Button
+            android:id="@+id/btnRetryBio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_glass_panel"
+            android:textColor="@color/accent"
+            android:text="Thử lại" />
+    </LinearLayout>
+
+</LinearLayout>
