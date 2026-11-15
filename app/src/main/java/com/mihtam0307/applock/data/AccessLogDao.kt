@@ -18,4 +18,10 @@ interface AccessLogDao {
 
     @Query("DELETE FROM access_log")
     suspend fun clearAll()
+
+    @Query("SELECT photoPath FROM access_log WHERE timestamp < :cutoffMillis AND photoPath IS NOT NULL")
+    suspend fun getPhotoPathsOlderThan(cutoffMillis: Long): List<String>
+
+    @Query("DELETE FROM access_log WHERE timestamp < :cutoffMillis")
+    suspend fun deleteOlderThan(cutoffMillis: Long)
 }

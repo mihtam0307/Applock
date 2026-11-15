@@ -8,11 +8,17 @@ import android.provider.Settings
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.NotificationManagerCompat
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.mihtam0307.applock.auth.PrefsManager
+import com.mihtam0307.applock.data.RetentionCleaner
+import com.mihtam0307.applock.location.DeviceLocationActivity
+import com.mihtam0307.applock.update.UpdateChecker
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
@@ -33,9 +39,37 @@ class MainActivity : AppCompatActivity() {
         findViewById<Button>(R.id.btnHistory).setOnClickListener {
             startActivity(Intent(this, com.mihtam0307.applock.history.HistoryActivity::class.java))
         }
+        findViewById<Button>(R.id.btnDeviceLocation).setOnClickListener {
+            startActivity(Intent(this, DeviceLocationActivity::class.java))
+        }
+
+        // Dọn ảnh + dòng lịch sử cũ hơn 30 ngày mỗi khi mở app.
+        lifecycleScope.launch { RetentionCleaner.cleanup(this@MainActivity) }
 
         loadAppList()
         checkPermissions()
+        checkForUpdateIfDue()
+    }
+
+    /** Kiểm tra bản cập nhật mới trên GitHub, tối đa 1 lần / 24 giờ để tránh gọi mạng liên tục. */
+    private fun checkForUpdateIfDue() {
+        val updatePrefs = getSharedPreferences("update_check", MODE_PRIVATE)
+        val lastCheck = updatePrefs.getLong("last_check", 0L)
+        if (System.currentTimeMillis() - lastCheck < 24L * 60 * 60 * 1000) return
+        updatePrefs.edit().putLong("last_check", System.currentTimeMillis()).apply()
+
+        UpdateChecker.checkForUpdate(this) { versionTag, releaseUrl ->
+            if (!isFinishing) {
+                AlertDialog.Builder(this)
+                    .setTitle(R.string.update_available_title)
+                    .setMessage(getString(R.string.update_available_message, versionTag))
+                    .setPositiveButton(R.string.btn_update_now) { _, _ ->
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(releaseUrl)))
+                    }
+                    .setNegativeButton(R.string.btn_update_later, null)
+                    .show()
+            }
+        }
     }
 
     override fun onResume() {

@@ -29,4 +29,19 @@
     <string name="history_empty">Chưa có lượt truy cập nào</string>
     <string name="history_success">Mở thành công</string>
     <string name="history_failed">Nhập sai mật khẩu</string>
+
+    <string name="lockout_message">Nhập sai nhiều lần — thử lại sau %d giây</string>
+
+    <string name="btn_device_location">Vị trí thiết bị</string>
+    <string name="title_device_location">Vị trí thiết bị này</string>
+    <string name="location_fetching">Đang lấy vị trí…</string>
+    <string name="location_unavailable">Chưa lấy được vị trí. Hãy bật GPS và thử lại.</string>
+    <string name="location_permission_denied">Cần cấp quyền vị trí để dùng tính năng này.</string>
+    <string name="btn_open_in_maps">Mở trong Google Maps</string>
+    <string name="btn_refresh_location">Lấy lại vị trí</string>
+
+    <string name="update_available_title">Có bản cập nhật mới</string>
+    <string name="update_available_message">Phiên bản %1$s đã có trên GitHub. Cập nhật ngay?</string>
+    <string name="btn_update_now">Cập nhật ngay</string>
+    <string name="btn_update_later">Để sau</string>
 </resources>

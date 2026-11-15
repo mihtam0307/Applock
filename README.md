@@ -30,6 +30,19 @@ Mở thư mục này bằng Android Studio → để Gradle sync xong → **Buil
 - **Vân tay / Gương mặt**: máy phải có sẵn vân tay/khuôn mặt đăng ký trong Cài đặt hệ thống thì mới chọn được loại khoá này.
 - App chưa đăng ký lên Google Play nên các quyền nhạy cảm (Accessibility, Notification access, Device Admin) không bị giới hạn như app public — chỉ dùng cho nhu cầu cá nhân/sideload.
 
+## Cập nhật bảo mật & tính năng mới (phiên bản này)
+
+- Chống dò mật khẩu: nhập sai PIN/Hình nhiều lần bị khoá tạm tăng dần (30s → 1 phút → 5 phút → 15 phút).
+- Mật khẩu chủ băm bằng PBKDF2-HMAC-SHA256 (120.000 vòng) thay vì SHA-256 thường, so khớp theo kiểu hằng thời gian.
+  ⚠️ Do đổi thuật toán băm, sau khi cập nhật bản cũ phải **đặt lại mã số/hình chủ** (mã cũ sẽ không còn đúng).
+- Màn khoá bật `FLAG_SECURE`: chặn chụp/quay màn hình và xem trước trong Recents lúc nhập mật khẩu.
+- Mỗi lần có người mở 1 app bị khoá (đúng lẫn sai mật khẩu) đều tự chụp 1 ảnh camera trước, ảnh được **mã hoá AES-256-GCM** (Android Keystore) ngay khi lưu xuống máy.
+- Ảnh + lịch sử truy cập tự xoá sau **30 ngày**; màn Lịch sử gộp hiển thị theo từng ngày ("Hôm nay", "Hôm qua", dd/MM/yyyy).
+- Có màn **Vị trí thiết bị** (định vị chính máy đang cầm, mở trong Google Maps) — cần cấp quyền vị trí.
+- Tự kiểm tra bản mới trên GitHub Releases của repo khi mở app (tối đa 1 lần/24h), báo ngay trong app nếu có bản mới hơn.
+
+**Không có trong bản này (cố ý không làm):** app chủ điều khiển/giám sát từ xa nhiều thiết bị khác, nghe lén micro từ xa, bật/tắt chạy ngầm từ xa giữa các máy. Các tính năng này có cùng cơ chế với phần mềm theo dõi lén (stalkerware) nên không được hỗ trợ xây dựng, bất kể mục đích sử dụng.
+
 ## Cấu trúc mã nguồn chính
 
 | File | Vai trò |

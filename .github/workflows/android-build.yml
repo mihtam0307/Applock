@@ -20,6 +20,9 @@ jobs:
 
       - name: Thiết lập Gradle
         uses: gradle/actions/setup-gradle@v3
+        with:
+          # AGP 8.5.2 + kapt chưa chạy được trên Gradle 9.x của runner -> ghim Gradle 8.9
+          gradle-version: "8.9"
 
       - name: Build APK debug
         run: gradle assembleDebug --no-daemon
